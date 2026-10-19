@@ -13,7 +13,7 @@ httpRoute:
   # Which Gateways this Route is attached to.
   parentRefs:
   - name: eg
-    sectionName: web
+    sectionName: http
     namespace: default
   # Hostnames matching HTTP header.
   hostnames:

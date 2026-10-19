@@ -12,9 +12,9 @@ httpRoute:
   annotations: {}
   # Which Gateways this Route is attached to.
   parentRefs:
-  - name: envoy-gateway
+  - name: eg
     sectionName: web
-    namespace: envoy-gateway-system
+    namespace: default
   # Hostnames matching HTTP header.
   hostnames:
   - color-app.local

@@ -12,9 +12,9 @@ httpRoute:
   annotations: {}
   # Which Gateways this Route is attached to.
   parentRefs:
-  - name: traefik-gateway
+  - name: envoy-gateway
     sectionName: web
-    namespace: traefik
+    namespace: envoy-gateway-system
   # Hostnames matching HTTP header.
   hostnames:
   - color-app.local

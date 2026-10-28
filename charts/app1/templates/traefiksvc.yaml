@@ -1,0 +1,11 @@
+# apiVersion: traefik.io/v1alpha1
+# kind: TraefikService
+# metadata:
+#   name: traefik-service
+# spec:
+#   weighted:
+#     services:
+#       - name: {{ include "app1.fullname" . }}-stable # k8s service name that you need to create for stable application version
+#         port: 80
+#       - name: {{ include "app1.fullname" . }}-canary # k8s service name that you need to create for new application version
+#         port: 80

@@ -4,7 +4,8 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.0.0"
-app_color: 'blue'
+app_color: 'green'
+replicaCount: 2
 httpRoute:
   # HTTPRoute enabled.
   enabled: true

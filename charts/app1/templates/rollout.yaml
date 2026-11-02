@@ -87,10 +87,10 @@ spec:
     canary:
       canaryService: {{ include "app1.fullname" . }}-canary
       stableService: {{ include "app1.fullname" . }}-stable
-      trafficRouting:
-        plugins:
-          argoproj-labs/gatewayAPI:   # Calls the Gateway API plugin
-            httpRoute: {{ $fullName }}   # Target HTTPRoute resource      
+      # trafficRouting:
+      #   plugins:
+      #     argoproj-labs/gatewayAPI:   # Calls the Gateway API plugin
+      #       httpRoute: {{ $fullName }}   # Target HTTPRoute resource      
       steps:
         - setWeight: 20
         - pause: {}

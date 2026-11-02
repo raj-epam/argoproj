@@ -1,3 +1,4 @@
+{{- $fullName := include "app1.fullname" . -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:

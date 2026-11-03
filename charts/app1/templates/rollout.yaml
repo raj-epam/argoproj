@@ -47,6 +47,8 @@ spec:
           env:
             - name: "APP_COLOR"
               value: {{ .Values.app_color}}
+            - name: "ERROR_RATE"
+              value: {{ .Values.error}}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -88,17 +90,28 @@ spec:
       canaryService: {{ include "app1.fullname" . }}-canary
       stableService: {{ include "app1.fullname" . }}-stable
       dynamicStableScale: true
+      # prePromotionAnalysis:
+      #   templates:
+      #     - templateName: success-rate
+      #   args:
+      #     - name: service-name
+      #       value: {{ include "app1.fullname" . }}-canary
       trafficRouting:
         plugins:
           argoproj-labs/gatewayAPI:
-            httpRoute: {{ $fullName }}
-      # trafficRouting:
-      #   plugins:
-      #     argoproj-labs/gatewayAPI:   # Calls the Gateway API plugin
-      #       httpRoute: {{ $fullName }}   # Target HTTPRoute resource      
+            httpRoute: {{ $fullName }} 
       steps:
         - setWeight: 20
         - pause: {}
+        - analysis:
+            templates:
+              - templateName: success-rate
+            args:
+              - name: service-name
+                value: {{ include "app1.fullname" . }}-canary
+        - setWeight: 50
+        - pause: 
+            duration: 20s
         - setWeight: 80
         - pause: 
             duration: 10s

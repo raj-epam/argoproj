@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+spec:
+  args:
+    - name: service-name
+    - name: initial-delay
+      value: 5s
+    - name: success-threshold
+      value: '0.95'
+  metrics:
+    - name: success-rate
+      interval: 5s
+      count: 60
+      initialDelay: '{{args.initial-delay}}'
+      successCondition: result[0] <= {{args.success-threshold}}
+      failureLimit: 3
+      provider:
+        prometheus:
+          address: http://prometheus.local
+          query: |
+            (
+              sum(rate(envoy_cluster_upstream_rq_xx{
+                envoy_cluster_name="httproute/argo-rollout/argorollout/rule/0",
+                envoy_response_code_class="5xx"
+              }[5m]))
+              /
+              clamp_min(
+                sum(rate(envoy_cluster_upstream_rq_total{
+                  envoy_cluster_name="httproute/argo-rollout/argorollout/rule/0"
+                }[5m])),
+                0.001
+              )
+            )

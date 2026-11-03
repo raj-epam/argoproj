@@ -48,7 +48,7 @@ spec:
             - name: "APP_COLOR"
               value: {{ .Values.app_color}}
             - name: "ERROR_RATE"
-              value: {{ .Values.error}}
+              value: "{{ .Values.error}}"
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

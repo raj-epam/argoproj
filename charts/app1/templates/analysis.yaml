@@ -16,4 +16,6 @@ spec:
         prometheus:
           address: http://prom-stack-kube-prometheus-prometheus.kubernetes-mcp-server.svc.cluster.local:9090
           query: |
-            sum(rate(envoy_cluster_upstream_rq_xx{envoy_cluster_name="httproute/color-app/display-site-app1/rule/0", envoy_response_code_class!="2"}[5m]))/sum(rate(envoy_cluster_upstream_rq_total{envoy_cluster_name="httproute/color-app/display-site-app1/rule/0"}[5m]))
+            sum(rate(envoy_cluster_upstream_rq_xx{envoy_cluster_name="httproute/color-app/display-site-app1/rule/0", envoy_response_code_class!="2"}[5m]))
+            /
+            sum(rate(envoy_cluster_upstream_rq_total{envoy_cluster_name="httproute/color-app/display-site-app1/rule/0"}[5m]))

@@ -4,6 +4,11 @@ kind: Rollout
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
+    notifications.argoproj.io/subscribe.on-rollout-updated.slack: "C0CE89NR4F8"
+    notifications.argoproj.io/subscribe.on-rollout-step-completed.slack: "C0CE89NR4F8"
+    notifications.argoproj.io/subscribe.on-rollout-paused.slack: "C0CE89NR4F8"
+    notifications.argoproj.io/subscribe.on-rollout-completed.slack: "C0CE89NR4F8"
+    notifications.argoproj.io/subscribe.on-rollout-aborted.slack: "C0CE89NR4F8"
   name: {{ include "app1.fullname" . }}
   labels:
     {{- include "app1.labels" . | nindent 4 }}

@@ -1,9 +1,9 @@
 image:
-  repository: lmacademy/simple-color-app:1.1.0
+  repository: lmacademy/simple-color-app
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.0.0"
+  tag: "1.1.0"
 app_color: 'white'
 error: '0.1'
 replicaCount: 2

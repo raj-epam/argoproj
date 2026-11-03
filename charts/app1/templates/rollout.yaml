@@ -87,6 +87,11 @@ spec:
     canary:
       canaryService: {{ include "app1.fullname" . }}-canary
       stableService: {{ include "app1.fullname" . }}-stable
+      dynamicStableScale: true
+      trafficRouting:
+        plugins:
+          argoproj-labs/gatewayAPI:
+            httpRoute: {{ $fullName }}
       # trafficRouting:
       #   plugins:
       #     argoproj-labs/gatewayAPI:   # Calls the Gateway API plugin
